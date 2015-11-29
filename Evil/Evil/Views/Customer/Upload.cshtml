@@ -1,7 +1,52 @@
 ﻿
 @{
-    ViewBag.Title = "Upload";
+    ViewBag.Title = "Result of the Upload";
 }
 
-<h2>Upload</h2>
-
+<h2>Result of the Upload</h2>
+<br/><br/>
+<h3>Success List</h3>
+<table>
+    @{
+        var successList = (List<Tuple<string, string>>)ViewBag.SuccessList;
+        if (successList.Any())
+        {
+            foreach (var successEntry in successList)
+            {
+                <tr>
+                    <td>@successEntry.Item1</td>
+                    <td>@successEntry.Item2</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>Hard luck. No successful customer uploads.</td>
+            </tr>
+        }
+    }
+</table>
+<br/><br/>
+<h3>Failed List</h3>
+<table>
+    @{
+        var failList = (List<Tuple<string, string>>)ViewBag.FailList;
+        if (failList.Any())
+        {
+            foreach (var failEntry in failList)
+            {
+                <tr>
+                    <td>@failEntry.Item1</td>
+                    <td>@failEntry.Item2</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>Yeppeee. No failed upload for today.</td>
+            </tr>
+        }
+    }
+</table>
